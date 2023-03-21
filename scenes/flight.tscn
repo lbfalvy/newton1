@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://qg5i54i0pi5n"]
+
+[ext_resource type="Script" path="res://scripts/PivotCamera.gd" id="1_88yfx"]
+[ext_resource type="PackedScene" uid="uid://tmpegul8ctw1" path="res://components/Tag/tag.tscn" id="2_i3pcw"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80711, 4.17964)
+script = ExtResource("1_88yfx")
+target = NodePath("../spaceship")
+
+[node name="spaceship" type="CSGBox3D" parent="."]
+
+[node name="star" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.830775, -0.256821, 0.493817, -0.00937892, 0.880605, 0.473758, -0.556529, -0.398218, 0.729177, 0, 0, 0)
+
+[node name="target" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -5, 5)
+
+[node name="Tag" parent="target" node_paths=PackedStringArray("camera", "subject") instance=ExtResource("2_i3pcw")]
+title = "Target"
+camera = NodePath("../../Camera3D")
+subject = NodePath("../../spaceship")
